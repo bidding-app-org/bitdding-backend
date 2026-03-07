@@ -9,7 +9,7 @@ import com.example.bidbackend.service.ProductService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
