@@ -10,3 +10,4 @@ public record AppProperties(
 ) {
 	public record Cors(String[] allowedOrigins) {}
 }
+
