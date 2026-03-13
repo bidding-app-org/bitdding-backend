@@ -21,15 +21,12 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        run: mvn -B clean package -DskipTests
-
-      - name: Verify build artifact
-        run: ls -la target
+        run: mvn clean package -DskipTests
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-jar
+          name: springboot-app
           path: target/*.jar
 
   deploy:
@@ -37,15 +34,20 @@ jobs:
     needs: build
 
     steps:
-      - name: Download JAR artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: app-jar
-          path: .
+          name: springboot-app
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8435B00D1C61490899F4EA977A92961C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D1188565E2774F5EAF13B2F2ACD37315 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F779D56FF24F49C08B222171DA9B303E }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: bitting-backend
           package: '*.jar'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
