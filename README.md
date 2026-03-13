@@ -1,7 +1,7 @@
 # Bidding Application – Backend
 
 This is the Spring Boot backend for the Bidding Application.  
-It handles product listings, bidding operations, user interactions, and data management for the system.
+It handles product listings, bidding operations, user interactions,    and data management for the system.
 
 ---
 
