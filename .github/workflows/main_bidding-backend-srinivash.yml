@@ -30,4 +30,4 @@ jobs:
         with:
           app-name: bidding-backend-srinivash
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: target
+          package: target/*.jar
